@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just One Question 💝</title>
+
+  <style>
+    body {
+      background: #ffe6eb;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 120px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #c9184a;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes-button {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    .no-button {
+      background-color: #adb5bd;
+      color: black;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 24px;
+      animation: floatUp 4s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Malavika 💖</h1>
+  <h1>Will you be my Darkhaast? 💘</h1>
+
+  <button class="yes-button" onclick="handleYesClick()">Yes 💝</button>
+  <button class="no-button" onclick="handleNoClick()">No 💔</button>
+
+  <script>
+    const messages = [
+      "Are you sure? 🥺",
+      "Please say yes 💕",
+      "Don’t break my heart 😭",
+      "I’ll wait forever 😖",
+      "Okay… last chance 😳"
+    ];
+
+    let messageIndex = 0;
+
+    function handleNoClick() {
+      const noButton = document.querySelector(".no-button");
+      const yesButton = document.querySelector(".yes-button");
+
+      noButton.textContent = messages[messageIndex];
+      messageIndex = (messageIndex + 1) % messages.length;
+
+      const currentSize = parseFloat(
+        window.getComputedStyle(yesButton).fontSize
+      );
+
+      yesButton.style.fontSize = `${currentSize * 1.4}px`;
+    }
+
+    function handleYesClick() {
+      window.location.href = "yes_page.html";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
